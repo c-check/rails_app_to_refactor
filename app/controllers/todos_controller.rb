@@ -14,6 +14,8 @@ class TodosController < ApplicationController
   end
 
   def index
+    # TODO: validate params
+    # TODO: @todos.query(params).as_json
     todos = @todos.filter_by_status(params).order_by(params).map(&:serialize_as_json)
 
     render_json(200, todos:)

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+
+  # TODO: use `before_action` for setting errors
+  # TODO: consider using `before_action` for validating params
   def create
     user_params = params.require(:user).permit(:name, :email, :password, :password_confirmation)
 
@@ -11,6 +14,7 @@ class UsersController < ApplicationController
     errors[:password] = ["can't be blank"] if password.blank?
     errors[:password_confirmation] = ["can't be blank"] if password_confirmation.blank?
 
+    # TODO: use guard clauses for errors and bad password
     if errors.present?
       render_json(422, user: errors)
     else

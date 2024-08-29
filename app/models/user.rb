@@ -16,11 +16,11 @@ class User < ApplicationRecord
 
   private
 
-    def create_default_todo_list
-      todo_lists.create!(title: 'Default', default: true)
-    end
+  def create_default_todo_list
+    todo_lists.create!(title: 'Default', default: true)
+  end
 
-    def send_welcome_email
-      UserMailer.with(user: self).welcome.deliver_later
-    end
+  def send_welcome_email
+    UserMailer.with(user: self).welcome.deliver_later
+  end
 end

@@ -28,7 +28,7 @@ class TodoList < ApplicationRecord
 
   private
 
-    def default_uniqueness
-      errors.add(:default, 'already exists') if default? && user.todo_lists.default.exists?
-    end
+  def default_uniqueness
+    errors.add(:default, 'already exists') if default? && user.todo_lists.default.exists?
+  end
 end

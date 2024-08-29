@@ -11,6 +11,8 @@ class Todo < ApplicationRecord
   scope :completed, -> { where.not(completed_at: nil) }
   scope :incomplete, -> { where(completed_at: nil) }
 
+  # TODO: replace case with frozen hash or config
+  # TODO: potentially replace modified "pramas[:status:]" with method
   scope :filter_by_status, ->(params) {
     case params[:status]&.strip&.downcase
     when 'overdue' then overdue
@@ -30,6 +32,7 @@ class Todo < ApplicationRecord
     order(column_name => order)
   }
 
+  # TODO: repace case
   before_validation on: :update do
     case completed
     when 'true' then complete
